@@ -1,0 +1,23 @@
+{% block body %}
+{% if session['logged'] %}
+<p>You are logged in</p>
+{% else %}
+<div>
+    <div>
+        <form action="/login" method="POST">
+            <input type="username" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Log in">
+        </form>
+    </div>
+
+    <div>
+    {% with message = get_flashed_messages() %}
+        {% if message %}
+            <div class="message_flash">{{ message[0] }}</div>
+        {% endif %}
+    {% endwith %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
