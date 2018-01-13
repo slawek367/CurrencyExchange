@@ -1,4 +1,5 @@
 from currency_factory.currency import Currency
+from currency_factory.coinmarket_api import CoinmarketApi
 
 class LskCurrency(Currency):
 
@@ -7,4 +8,4 @@ class LskCurrency(Currency):
         self.priceUsd = self.updateCurrentPriceUsd()
         
     def updateCurrentPriceUsd(self):
-        return 230
+        return CoinmarketApi.getLskPrice()

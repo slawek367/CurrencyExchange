@@ -1,3 +1,4 @@
+
 class Currency():
 
     def __init__(self, name):

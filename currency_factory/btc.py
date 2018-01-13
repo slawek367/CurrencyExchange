@@ -1,4 +1,5 @@
 from currency_factory.currency import Currency
+from currency_factory.coinmarket_api import CoinmarketApi
 
 class BtcCurrency(Currency):
 
@@ -7,4 +8,4 @@ class BtcCurrency(Currency):
         self.priceUsd = self.updateCurrentPriceUsd()
 
     def updateCurrentPriceUsd(self):
-        return 50000
+        return CoinmarketApi.getBtcPrice()
