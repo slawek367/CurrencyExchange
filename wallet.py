@@ -54,4 +54,13 @@ class Wallet():
                 return self.currencies.index(x)
         
         return False
+    
+    def info(self):
+        print("\nWallet info:")
+
+        if len(self.currencies) < 1:
+            print("No founds")
+
+        for currency, count in self.currencies:
+            print("Currency:%s\tCount: %s\tDollar exchange: %s$\t\tTotal: %s$" %(currency.getName(), count, currency.getPriceUsd(), count*currency.getPriceUsd()))
         

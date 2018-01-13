@@ -1,4 +1,4 @@
-#metoda wytworcza, singleton
+from wallet import Wallet
 
 class User:
 
@@ -8,6 +8,7 @@ class User:
         self.surrname = surrname
         self.login = login
         self.password = password
+        self.wallet = Wallet(id)
     
     def getId(self):
         return self.id
@@ -33,3 +34,10 @@ class User:
             return 1
         else:
             return 0
+    
+    def info(self):
+        print("User informations:\n")
+        print("ID: %s" %self.id)
+        print("Name: %s" %self.name)
+        print("Surrname: %s" %self.surrname)
+        print("Login: %s" %self.login)
