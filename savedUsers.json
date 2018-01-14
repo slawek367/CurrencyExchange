@@ -1,0 +1,35 @@
+{
+    "userList": {
+        "2": {
+            "id": 2,
+            "login": "matej123",
+            "name": "Robert",
+            "password": "12345",
+            "surrname": "Mateja",
+            "wallet": {
+                "currencies": [
+                    [
+                        {
+                            "name": "BTC",
+                            "priceUsd": 51200
+                        },
+                        30
+                    ]
+                ],
+                "id": "2"
+            }
+        },
+        "3": {
+            "id": 3,
+            "login": "jaro123",
+            "name": "Jarek",
+            "password": "12345",
+            "surrname": "Kon",
+            "wallet": {
+                "currencies": [],
+                "id": "3"
+            }
+        }
+    },
+    "userMaxId": 3
+}
