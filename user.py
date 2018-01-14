@@ -12,7 +12,7 @@ class User:
     
     def getId(self):
         return self.id
-    
+
     def getName(self):
         return self.name
 
@@ -36,7 +36,7 @@ class User:
             return 0
     
     def info(self):
-        print("User informations:\n")
+        print("\nUser informations:\n")
         print("ID: %s" %self.id)
         print("Name: %s" %self.name)
         print("Surrname: %s" %self.surrname)
