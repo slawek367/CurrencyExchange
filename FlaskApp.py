@@ -2,9 +2,15 @@ from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session, abort
 import os
 
+from users import Users
+from serialize import Serialize
+
 password = "qwerty"
 username = "admin"
- 
+
+userList = Users()
+userList = Serialize.loadJSON()
+
 app = Flask(__name__)
  
 @app.route('/')
@@ -21,7 +27,11 @@ def do_admin_login():
     else:
         flash('You typed wrong password!')
     return home()
- 
+
+@app.route('/users')
+def users():
+    return render_template('users.html', users = userList.getUserList())
+
 @app.route('/about')
 def about():
     return render_template('about.html')

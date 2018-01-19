@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Users</h1>
+    <ul class="list-group">
+           <li class="list-group-item row">
+                <b>
+                <div class="col-md-3">ID</div>
+                <div class="col-md-3">Login</div>
+                <div class="col-md-3">Name</div>
+                <div class="col-md-3">Surrname</div>
+                </b>
+            </li>
+        {% for id, user in users.items() %}
+            <li class="list-group-item row">
+                <div class="col-md-3">{{ user.id }}</div>
+                <div class="col-md-3">{{ user.login }}</div>
+                <div class="col-md-3">{{ user.name }}</div>
+                <div class="col-md-3">{{ user.surrname }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
