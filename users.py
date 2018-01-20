@@ -45,7 +45,6 @@ class Users():
     def printUsers(self):
         for key, value in self.userList.items():
             value.info()
-            value.wallet.info()
     
     def loadUsers(self):
         pass

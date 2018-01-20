@@ -1,0 +1,8 @@
+mysql -u root -p
+
+SHOW DATABASES;
+CREATE DATABASE currency_exchange;
+use currency_exchange;
+CREATE TABLE(id INT(11) AUTO_INCREMENT PRIMARY KEY, username VARCHAR(30), email VARCHAR(100), password VARCHAR(100), name VARCHAR(100), surrname VARCHAR(100), register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+SHOW TABLES;
+DESCRIBE users;

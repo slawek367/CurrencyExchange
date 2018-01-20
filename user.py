@@ -1,5 +1,3 @@
-from wallet import Wallet
-
 class User:
 
     def __init__(self, id, name, surrname, login, password):
@@ -8,7 +6,6 @@ class User:
         self.surrname = surrname
         self.login = login
         self.password = password
-        self.wallet = Wallet(id)
     
     def getId(self):
         return self.id

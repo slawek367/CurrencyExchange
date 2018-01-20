@@ -1,9 +1,13 @@
 from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for, logging, request
+from flask_mysqldb import MySQL
+from passlib.hash import sha256_crypt
+
 import os
 
 from users import Users
 from serialize import Serialize
+from web.register import Register
 
 password = "qwerty"
 username = "admin"
@@ -35,6 +39,15 @@ def users():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = Register(request.form)
+    
+    if request.method == 'POST' and form.validate():
+        return render_template('register.html')
+    
+    return render_template('register.html', form=form)
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)

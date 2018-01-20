@@ -3,6 +3,7 @@
         "2": {
             "id": 2,
             "login": "matej123",
+            "email": "asasa@sa.pl",
             "name": "Robert",
             "password": "12345",
             "surrname": "Mateja",
@@ -22,6 +23,7 @@
         "3": {
             "id": 3,
             "login": "jaro123",
+            "email": "asasa@sa.pl",
             "name": "Jarek",
             "password": "12345",
             "surrname": "Kon",
