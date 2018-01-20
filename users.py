@@ -1,4 +1,5 @@
 from user import User
+from db import Db
 
 class Users():
 
@@ -6,11 +7,9 @@ class Users():
         self.userList = {}
         self.userMaxId = 0
     
-    def addUser(self, name, surrname, login, password):
-        user = User(self.userMaxId + 1, name, surrname, login, password)
-        self.userList[self.userMaxId+1] = user
-        self.userMaxId = self.userMaxId + 1
-        return True
+    def addUser(name, surrname, login, email, password):
+        db = Db()
+        db.query("INSERT INTO users(name, surrname, email, login, password) VALUES(%s, %s, %s, %s, %s)", (name, surrname, login, email, password))
     
     def deleteUser(self, user):
         if user.id in self.userList:

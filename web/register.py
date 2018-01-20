@@ -1,5 +1,6 @@
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from flask import request
+from db import Db
 
 class Register(Form):
 
@@ -14,5 +15,3 @@ class Register(Form):
     ])
 
     confrim = PasswordField('Confrim Password')
-
-        

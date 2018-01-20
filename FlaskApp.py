@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for, logging, request
-from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 
 import os
@@ -15,8 +14,9 @@ username = "admin"
 userList = Users()
 userList = Serialize.loadJSON()
 
+
 app = Flask(__name__)
- 
+
 @app.route('/')
 def home():
     if not session.get('logged'):
@@ -45,6 +45,14 @@ def register():
     form = Register(request.form)
     
     if request.method == 'POST' and form.validate():
+        name = form.name.data
+        surrname = form.surrname.data
+        email = form.email.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+
+        #mysql
+
         return render_template('register.html')
     
     return render_template('register.html', form=form)
