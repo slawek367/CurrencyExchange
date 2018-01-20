@@ -7,7 +7,7 @@ import os
 from users import Users
 from serialize import Serialize
 from web.register import Register
-
+from db import Db
 password = "qwerty"
 username = "admin"
 
@@ -18,11 +18,11 @@ userList = Serialize.loadJSON()
 app = Flask(__name__)
 
 @app.route('/')
-def home():
+def index():
     if not session.get('logged'):
         return render_template('login.html')
     else:
-        return render_template('home.html')
+        return render_template('index.html')
  
 @app.route('/login', methods=['POST'])
 def do_admin_login():
@@ -30,7 +30,7 @@ def do_admin_login():
         session['logged'] = True
     else:
         flash('You typed wrong password!')
-    return home()
+    return index()
 
 @app.route('/users')
 def users():
@@ -52,8 +52,10 @@ def register():
         password = sha256_crypt.encrypt(str(form.password.data))
 
         #mysql
+        db = Db()
 
-        return render_template('register.html')
+        flash('Registration succesfull, now you can log in', 'success')
+        redirect(url_for('index'))
     
     return render_template('register.html', form=form)
 
