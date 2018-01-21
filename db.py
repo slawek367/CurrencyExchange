@@ -14,9 +14,16 @@ class Db():
         'raise_on_warnings': True,
         'use_pure': False
         }
-
+    
+    def query(self, queryToExecute, params=None):
         self.cnx = mysql.connector.connect(**self.config)
         self.cursor = self.cnx.cursor();
-    
-    def query(self, queryToExecute):
-        self.cursor.execute(queryToExecute)
+
+        if params == None:
+            self.cursor.execute(queryToExecute)
+        else:
+            self.cursor.execute(queryToExecute, params)
+
+        self.cnx.commit()
+        self.cursor.close()
+        self.cnx.close()
