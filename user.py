@@ -1,11 +1,12 @@
 class User:
 
-    def __init__(self, id, name, surrname, login, password):
+    def __init__(self, id, username, email, password, name, surrname):
         self.id = id
+        self.username = username
+        self.email = email
+        self.password = password
         self.name = name
         self.surrname = surrname
-        self.login = login
-        self.password = password
     
     def getId(self):
         return self.id
@@ -22,8 +23,8 @@ class User:
     def getSurrname(self):
         return self.surrname
 
-    def getLogin(self):
-        return self.login
+    def getUsername(self):
+        return self.username
     
     def changePassword(self, oldPassword, newPassword):
         if self.password == oldPassword:
@@ -37,4 +38,4 @@ class User:
         print("ID: %s" %self.id)
         print("Name: %s" %self.name)
         print("Surrname: %s" %self.surrname)
-        print("Login: %s" %self.login)
+        print("Username: %s" %self.username)

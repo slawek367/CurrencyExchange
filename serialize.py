@@ -23,10 +23,11 @@ class Serialize():
         for userId in data["userList"]:
             createdUser = User(
                 data["userList"][userId]["id"],
+                data["userList"][userId]["username"],
+                data["userList"][userId]["email"],
+                data["userList"][userId]["password"],
                 data["userList"][userId]["name"],
-                data["userList"][userId]["surrname"],
-                data["userList"][userId]["login"],
-                data["userList"][userId]["password"]
+                data["userList"][userId]["surrname"]
             )
             
             userWallet = Wallet(userId)

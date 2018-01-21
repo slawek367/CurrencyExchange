@@ -52,11 +52,10 @@ def register():
         password = sha256_crypt.encrypt(str(form.password.data))
 
         #mysql
-        db = Db()
-        db.query("INSERT INTO users(username, email, password, name, surrname) VALUES(%s, %s, %s, %s, %s)", (username, email, password, name, surrname))
-
+        Users.addUser(username, email, password, name, surrname)
+        
         flash('Registration succesfull, now you can log in', 'success')
-        redirect(url_for('index'))
+        return redirect(url_for('index'))
     
     return render_template('register.html', form=form)
 

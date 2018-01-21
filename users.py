@@ -6,21 +6,31 @@ class Users():
     def __init__(self):
         self.userList = {}
         self.userMaxId = 0
-    
-    def addUser(name, surrname, login, email, password):
+
+    @staticmethod
+    def addUser(username, email, password, name, surrname):
         db = Db()
-        db.query("INSERT INTO users(name, surrname, email, login, password) VALUES(%s, %s, %s, %s, %s)", (name, surrname, login, email, password))
-    
+        db.queryInsert("INSERT INTO users(username, email, password, name, surrname) VALUES(%s, %s, %s, %s, %s)", (username, email, password, name, surrname))
+
     def deleteUser(self, user):
         if user.id in self.userList:
             del self.userList[user.id]
             #self.userMaxId = self.userMaxId - 1
             return True
-        
+
         return False
-    
-    def getUserList(self):
-        return self.userList;
+
+    @staticmethod
+    def getUserList():
+        userList = {}
+        db = Db()
+        userListResponse = db.querySelect("SELECT id, username, email, password, name, surrname FROM users")
+        
+        for id, username, email, password, name, surrname in userListResponse:
+            user = User(id, username, email, password, name, surrname)
+            userList[id] = user
+
+        return userList;
 
     def getUser(self, id = None, name = None, surrname = None, login = None):
         if not id == None:
@@ -44,7 +54,7 @@ class Users():
     def printUsers(self):
         for key, value in self.userList.items():
             value.info()
-    
+
     def loadUsers(self):
         pass
         #TODO

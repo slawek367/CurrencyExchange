@@ -2,7 +2,7 @@
     "userList": {
         "2": {
             "id": 2,
-            "login": "matej123",
+            "username": "matej123",
             "email": "asasa@sa.pl",
             "name": "Robert",
             "password": "12345",
@@ -22,7 +22,7 @@
         },
         "3": {
             "id": 3,
-            "login": "jaro123",
+            "username": "jaro123",
             "email": "asasa@sa.pl",
             "name": "Jarek",
             "password": "12345",

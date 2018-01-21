@@ -14,16 +14,23 @@ class Db():
         'raise_on_warnings': True,
         'use_pure': False
         }
-    
-    def query(self, queryToExecute, params=None):
+
+    def queryInsert(self, queryToExecute, params):
         self.cnx = mysql.connector.connect(**self.config)
         self.cursor = self.cnx.cursor();
-
-        if params == None:
-            self.cursor.execute(queryToExecute)
-        else:
-            self.cursor.execute(queryToExecute, params)
-
+        self.cursor.execute(queryToExecute, params)
         self.cnx.commit()
         self.cursor.close()
         self.cnx.close()
+
+    def querySelect(self, queryToExecute):
+        self.cnx = mysql.connector.connect(**self.config)
+        self.cursor = self.cnx.cursor();
+        self.cursor.execute(queryToExecute)
+        items = self.cursor.fetchall()
+
+        self.cursor.close()
+        self.cnx.close()
+
+        return items
+    
