@@ -4,20 +4,12 @@
 {% if session['logged'] %}
 <p>You are logged in</p>
 {% else %}
-    <div align="center">
+    <div class="col-md-4 col-md-offset-4 text-center">
         <form action="/login" method="POST">
-            <input type="username" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
-            <input type="submit" value="Log in">
+            <input type="username" class="form-control" name="username" placeholder="Username">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="submit" class="form-control" value="Log in" style="background: #fb044a">
         </form>
-    </div>
-
-    <div>
-    {% with message = get_flashed_messages() %}
-        {% if message %}
-            <div class="message_flash">{{ message[0] }}</div>
-        {% endif %}
-    {% endwith %}
     </div>
 {% endif %}
 {% endblock %}

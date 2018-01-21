@@ -29,7 +29,7 @@ def do_admin_login():
     if request.form['password'] == password and request.form['username'] == username:
         session['logged'] = True
     else:
-        flash('You typed wrong password!')
+        flash('You typed wrong password!', 'danger')
     return index()
 
 @app.route('/users')
