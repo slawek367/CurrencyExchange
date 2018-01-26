@@ -4,7 +4,7 @@ from db import Db
 class Users():
 
     def __init__(self):
-        self.userList = {} #DELETE IT SOON
+        self.userList = {}
         self.userMaxId = 0
 
     @staticmethod
@@ -12,7 +12,7 @@ class Users():
         db = Db()
         db.queryInsert("INSERT INTO users(username, email, password, name, surrname) VALUES(%s, %s, %s, %s, %s)", (username, email, password, name, surrname))
 
-    def deleteUser(self, user): #TODO add mysql
+    def deleteUser(self, user):
         if user.id in self.userList:
             del self.userList[user.id]
             #self.userMaxId = self.userMaxId - 1
@@ -32,7 +32,7 @@ class Users():
 
         return userList;
 
-    def getUser(self, id = None, name = None, surrname = None, login = None): #TODO add mysql
+    def getUser(self, id = None, name = None, surrname = None, login = None):
         if not id == None:
             if id in self.userList:
                 return self.userList[id]
@@ -51,7 +51,10 @@ class Users():
 
         return False
 
-    def printUsers(self): #TODO add mysql
+    def printUsers(self):
         for key, value in self.userList.items():
             value.info()
 
+    def loadUsers(self):
+        pass
+        #TODO

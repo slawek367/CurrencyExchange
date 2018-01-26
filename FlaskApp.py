@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for, logging, request
 from passlib.hash import sha256_crypt
+from functools import wraps
 
 import os
 
@@ -17,19 +18,35 @@ userList = Serialize.loadJSON()
 
 app = Flask(__name__)
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('logged_in'):
+            flash('You must be logged in to enter this page!', 'danger')
+            return index()
+        return f(*args, **kwargs)
+    return decorated_function
+
 @app.route('/')
 def index():
-    if not session.get('logged'):
+    if not session.get('logged_in'):
         return render_template('login.html')
     else:
         return render_template('index.html')
  
 @app.route('/login', methods=['POST'])
-def do_admin_login():
+def login():
     if request.form['password'] == password and request.form['username'] == username:
-        session['logged'] = True
+        session['logged_in'] = True
     else:
         flash('You typed wrong password!', 'danger')
+    return index()
+
+@app.route('/logout')
+@login_required
+def logout():
+    session['logged_in'] = False
+    flash('You are logged out!', 'info')
     return index()
 
 @app.route('/users')

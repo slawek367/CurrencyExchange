@@ -1,17 +1,56 @@
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">Currency Exchange</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/users">Users</a></li>
-        <li><a href="#">Test</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/register">Register</a></li>
-      </ul>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Currency Exchange</a>
     </div>
-  </nav>
+    {% if session['logged_in'] == True %}
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/users">Users</a>
+      </li>
+      <li>
+        <a href="/admin">Admin Panel</a>
+      </li>
+      <li>
+        <a href="/about">About</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="/register">Register</a>
+      </li>
+    </ul>
+    {% elif session['admin_logged_in'] == True %} 
+      #TODO
+    {% else %}
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/users">Users</a>
+      </li>
+      <li>
+        <a href="/admin">Admin Panel</a>
+      </li>
+      <li>
+        <a href="/about">About</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="/register">Register</a>
+      </li>
+      <li>
+          <a href="/login">Login</a>
+      </li>
+    </ul>
+    {% endif %}
+
+  </div>
+</nav>
