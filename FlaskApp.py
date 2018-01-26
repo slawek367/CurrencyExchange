@@ -30,17 +30,25 @@ def login_required(f):
 @app.route('/')
 def index():
     if not session.get('logged_in'):
-        return render_template('login.html')
+        return render_template('index.html')
     else:
         return render_template('index.html')
  
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.form['password'] == password and request.form['username'] == username:
-        session['logged_in'] = True
+    if request.method == 'POST':
+        if request.form['password'] == password and request.form['username'] == username:
+            session['admin_logged_in'] = True
+            return index()
+        elif Users.checkLoginAndPassword(request.form['username'], request.form['password']):
+            session['logged_in'] = True
+            return index()
+        else:
+            flash('You typed wrong password!', 'danger')
+            return render_template('login.html')
     else:
-        flash('You typed wrong password!', 'danger')
-    return index()
+        return render_template('login.html')
+        
 
 @app.route('/logout')
 @login_required
@@ -66,7 +74,7 @@ def register():
         surrname = form.surrname.data
         email = form.email.data
         username = form.username.data
-        password = sha256_crypt.encrypt(str(form.password.data))
+        password = form.password.data
 
         #mysql
         Users.addUser(username, email, password, name, surrname)

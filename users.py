@@ -1,5 +1,6 @@
 from user import User
 from db import Db
+from passlib.hash import sha256_crypt
 
 class Users():
 
@@ -10,7 +11,7 @@ class Users():
     @staticmethod
     def addUser(username, email, password, name, surrname):
         db = Db()
-        db.queryInsert("INSERT INTO users(username, email, password, name, surrname) VALUES(%s, %s, %s, %s, %s)", (username, email, password, name, surrname))
+        db.queryInsert("INSERT INTO users(username, email, password, name, surrname) VALUES(%s, %s, %s, %s, %s)", (username, email, sha256_crypt.encrypt(str(password)), name, surrname))
 
     def deleteUser(self, user):
         if user.id in self.userList:
@@ -31,6 +32,18 @@ class Users():
             userList[id] = user
 
         return userList;
+
+    def checkLoginAndPassword(login, password):
+        userList = {}
+        db = Db()
+        passwordHashed = db.getPassword('SELECT password FROM users WHERE username="%s" OR email="%s" LIMIT 1' %(login, login))
+
+        if passwordHashed is False:
+            return False
+        elif sha256_crypt.verify(password, passwordHashed):
+            return True
+        else:
+            return False
 
     def getUser(self, id = None, name = None, surrname = None, login = None):
         if not id == None:

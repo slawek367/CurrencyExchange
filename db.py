@@ -34,3 +34,16 @@ class Db():
 
         return items
     
+    def getPassword(self, queryToExecute):
+        self.cnx = mysql.connector.connect(**self.config)
+        self.cursor = self.cnx.cursor();
+        self.cursor.execute(queryToExecute)
+        password = self.cursor.fetchone()
+
+        self.cursor.close()
+        self.cnx.close()
+
+        if password is None:
+            return False
+        else:
+            return password[0]

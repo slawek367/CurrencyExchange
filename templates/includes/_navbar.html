@@ -12,30 +12,37 @@
         <a href="/users">Users</a>
       </li>
       <li>
-        <a href="/admin">Admin Panel</a>
-      </li>
-      <li>
         <a href="/about">About</a>
       </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <a href="/register">Register</a>
+          <a href="/logout">Logout</a>
       </li>
     </ul>
     {% elif session['admin_logged_in'] == True %} 
-      #TODO
+    <ul class="nav navbar-nav">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/users">Users</a>
+        </li>
+        <li>
+          <a href="/admin">Admin Panel</a>
+        </li>
+      </ul>
+  
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+      </ul>
     {% else %}
     <ul class="nav navbar-nav">
       <li>
         <a href="/">Home</a>
-      </li>
-      <li>
-        <a href="/users">Users</a>
-      </li>
-      <li>
-        <a href="/admin">Admin Panel</a>
       </li>
       <li>
         <a href="/about">About</a>
