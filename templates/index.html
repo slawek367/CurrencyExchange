@@ -1,8 +1,20 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} 
+{% block body %} 
 
-{% block body %}
-    <div class="jumbotron text-center">
-        <h1>Welcome to Currency Exchange</h1>
-        <p class="lead">This is a Homepage!</p>
-    </div>
+{% if session['logged_in'] == True %}
+<div class="jumbotron text-center">
+    <h1>Welcome to Currency Exchange</h1>
+    <p class="lead">This is a Homepage!</p>
+</div>
+{% elif session['admin_logged_in'] == True %}
+<div class="jumbotron text-center">
+    <h1>Admin panel</h1>
+</div>
+{% else %}
+<div class="jumbotron text-center">
+    <h1>Welcome to Currency Exchange</h1>
+    <p class="lead">Please log in to get more functions!</p>
+</div>
+{% endif %} 
+
 {% endblock %}

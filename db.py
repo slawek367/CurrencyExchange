@@ -34,16 +34,16 @@ class Db():
 
         return items
     
-    def getPassword(self, queryToExecute):
+    def querySelectOne(self, queryToExecute):
         self.cnx = mysql.connector.connect(**self.config)
         self.cursor = self.cnx.cursor();
         self.cursor.execute(queryToExecute)
-        password = self.cursor.fetchone()
+        selected = self.cursor.fetchone()
 
         self.cursor.close()
         self.cnx.close()
 
-        if password is None:
+        if selected is None:
             return False
         else:
-            return password[0]
+            return selected[0]

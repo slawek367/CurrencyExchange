@@ -6,15 +6,10 @@ from functools import wraps
 import os
 
 from users import Users
-from serialize import Serialize
 from web.register import Register
 from db import Db
 password = "qwerty"
 username = "admin"
-
-userList = Users()
-userList = Serialize.loadJSON()
-
 
 app = Flask(__name__)
 
@@ -29,10 +24,7 @@ def login_required(f):
 
 @app.route('/')
 def index():
-    if not session.get('logged_in'):
-        return render_template('index.html')
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
  
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -44,7 +36,7 @@ def login():
             session['logged_in'] = True
             return index()
         else:
-            flash('You typed wrong password!', 'danger')
+            flash('You typed wrong username/email or password!', 'danger')
             return render_template('login.html')
     else:
         return render_template('login.html')
@@ -59,7 +51,7 @@ def logout():
 
 @app.route('/users')
 def users():
-    return render_template('users.html', users = userList.getUserList())
+    return render_template('users.html', users = Users.getUserList())
 
 @app.route('/about')
 def about():

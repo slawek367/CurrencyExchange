@@ -25,10 +25,10 @@ class Users():
     def getUserList():
         userList = {}
         db = Db()
-        userListResponse = db.querySelect("SELECT id, username, email, password, name, surrname FROM users")
+        userListResponse = db.querySelect("SELECT id, username, email, password, name, surrname, register_date FROM users")
         
-        for id, username, email, password, name, surrname in userListResponse:
-            user = User(id, username, email, password, name, surrname)
+        for id, username, email, password, name, surrname, registerDate in userListResponse:
+            user = User(id, username, email, password, name, surrname, registerDate)
             userList[id] = user
 
         return userList;
@@ -36,7 +36,7 @@ class Users():
     def checkLoginAndPassword(login, password):
         userList = {}
         db = Db()
-        passwordHashed = db.getPassword('SELECT password FROM users WHERE username="%s" OR email="%s" LIMIT 1' %(login, login))
+        passwordHashed = db.querySelectOne('SELECT password FROM users WHERE username="%s" OR email="%s" LIMIT 1' %(login, login))
 
         if passwordHashed is False:
             return False
@@ -46,23 +46,14 @@ class Users():
             return False
 
     def getUser(self, id = None, name = None, surrname = None, login = None):
-        if not id == None:
-            if id in self.userList:
-                return self.userList[id]
+        userList = {}
+        db = Db()
+        userResponse = db.querySelectOne('SELECT * FROM users WHERE id="%s" or username="%s" or email="%s"')
 
-        if not name == None and not surrname == None:
-            users = []
-            for key, value in self.userList.items():
-                if value.getName == name and value.getSurrname == surrname:
-                    users.append(value)
-            return users
+        for id, username, email, password, name, surrname, registerDate in userResponse:
+            user = User(id, username, email, password, name, surrname, registerDate)
 
-        if not login == None:
-            for key, value in self.userList.items():
-                if value.getLogin() == login:
-                    return value
-
-        return False
+        return user
 
     def printUsers(self):
         for key, value in self.userList.items():

@@ -1,12 +1,13 @@
 class User:
 
-    def __init__(self, id, username, email, password, name, surrname):
+    def __init__(self, id, username, email, password, name, surrname, registerDate):
         self.id = id
         self.username = username
         self.email = email
         self.password = password
         self.name = name
         self.surrname = surrname
+        self.registerDate = registerDate
     
     def getId(self):
         return self.id
