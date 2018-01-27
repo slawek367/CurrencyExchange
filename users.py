@@ -23,13 +23,13 @@ class Users():
 
     @staticmethod
     def getUserList():
-        userList = {}
+        userList = []
         db = Db()
-        userListResponse = db.querySelect("SELECT id, username, email, password, name, surrname, register_date FROM users")
+        userListResponse = db.querySelect("SELECT id, username, email, password, name, surrname, register_date FROM users ORDER BY id")
         
         for id, username, email, password, name, surrname, registerDate in userListResponse:
             user = User(id, username, email, password, name, surrname, registerDate)
-            userList[id] = user
+            userList.append(user)
 
         return userList;
 
