@@ -40,19 +40,27 @@ class Users():
 
         if passwordHashed is False:
             return False
-        elif sha256_crypt.verify(password, passwordHashed):
+        elif sha256_crypt.verify(password, passwordHashed[0]):
             return True
         else:
             return False
 
-    def getUser(self, id = None, name = None, surrname = None, login = None):
+    @staticmethod
+    def getUser(id = None, username = None, email = None):
         userList = {}
         db = Db()
-        userResponse = db.querySelectOne('SELECT * FROM users WHERE id="%s" or username="%s" or email="%s"')
+        print("Starting query...")
+        
+        if not id is None:
+            userResponse = db.querySelectOne('SELECT * FROM users WHERE id="%s"LIMIT 1' %(id))
+        elif not username is None and not email is None:
+            userResponse = db.querySelectOne('SELECT * FROM users WHERE username="%s" or email="%s" LIMIT 1' %(username, email))
+        else:
+            return False
 
-        for id, username, email, password, name, surrname, registerDate in userResponse:
-            user = User(id, username, email, password, name, surrname, registerDate)
-
+        print(*userResponse)
+        user = User(*userResponse)
+        print("LOL")
         return user
 
     def printUsers(self):

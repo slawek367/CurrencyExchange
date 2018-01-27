@@ -34,6 +34,7 @@ def login():
             return index()
         elif Users.checkLoginAndPassword(request.form['username'], request.form['password']):
             session['logged_in'] = True
+            session['user_name'] = Users.getUser(username = request.form['username'], email = request.form['username']).getName()
             return index()
         else:
             flash('You typed wrong username/email or password!', 'danger')
@@ -46,6 +47,7 @@ def login():
 @login_required
 def logout():
     session['logged_in'] = False
+    session['user_name'] = None
     flash('You are logged out!', 'info')
     return index()
 

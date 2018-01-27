@@ -3,8 +3,8 @@
 
 {% if session['logged_in'] == True %}
 <div class="jumbotron text-center">
-    <h1>Welcome to Currency Exchange</h1>
-    <p class="lead">This is a Homepage!</p>
+    <h1>Welcome {{ session['user_name'] }} to Currency Exchange</h1>
+    <p class="lead">This is a Homepage, you are logged to our service!</p>
 </div>
 {% elif session['admin_logged_in'] == True %}
 <div class="jumbotron text-center">

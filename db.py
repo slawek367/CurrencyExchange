@@ -46,4 +46,4 @@ class Db():
         if selected is None:
             return False
         else:
-            return selected[0]
+            return selected
