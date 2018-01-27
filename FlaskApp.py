@@ -51,6 +51,11 @@ def logout():
     flash('You are logged out!', 'info')
     return index()
 
+@login_required
+@app.route('/wallet')
+def wallet():
+    return render_template('wallet.html')
+
 @app.route('/users')
 def users():
     return render_template('users.html', users = Users.getUserList())
