@@ -1,6 +1,7 @@
 from user import User
 from db import Db
 from passlib.hash import sha256_crypt
+from wallet import Wallet
 
 class Users():
 
@@ -12,6 +13,7 @@ class Users():
     def addUser(username, email, password, name, surrname):
         db = Db()
         db.queryInsert("INSERT INTO users(username, email, password, name, surrname) VALUES(%s, %s, %s, %s, %s)", (username, email, sha256_crypt.encrypt(str(password)), name, surrname))
+        Wallet.registerWallet(username)
 
     def deleteUser(self, user):
         if user.id in self.userList:

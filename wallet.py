@@ -1,7 +1,23 @@
 from currency_factory.currency_manager import CurrencyManager
 from config import Config
-class Wallet():
+from db import Db
 
+class Wallet():
+        def __init__():
+            pass
+
+        @staticmethod
+        def registerWallet(username):
+            db = Db()
+            id = db.querySelectOne('SELECT id FROM users WHERE username="%s" LIMIT 1' %username)
+            
+            if not id is False:
+                db.queryInsert("INSERT INTO wallets(user_id, BTC, ETH, LTC, USD) VALUES (%s, %s, %s, %s, %s)", (id[0], 0, 0, 0, Config.startUsdMoney))
+                return True
+            else:
+                return False
+            
+'''
     def __init__(self, userId):
         self.id = userId
         self.currencies = []
@@ -63,4 +79,4 @@ class Wallet():
 
         for currency, count in self.currencies:
             print("Currency:%s\tCount: %s\tDollar exchange: %s$\t\tTotal: %s$" %(currency.getName(), count, currency.getPriceUsd(), count*currency.getPriceUsd()))
-        
+'''

@@ -12,6 +12,7 @@ def singleton(cls):
 @singleton
 class Config():
     depositTax = 0.01
+    startUsdMoney = 2000;
 
 '''
 singleton test:
