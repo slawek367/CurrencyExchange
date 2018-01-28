@@ -59,8 +59,14 @@ def logout():
 def wallet():
     
     wallet = Wallet(session['user_id'])
-    
     return render_template('wallet.html', wallet = wallet)
+
+@login_required
+@app.route('/market')
+def market():
+    
+    wallet = Wallet(session['user_id'])
+    return render_template('market.html', wallet = wallet)
 
 @app.route('/users')
 def users():

@@ -17,3 +17,8 @@ CREATE TABLE Wallets (
 	USD DECIMAL(20, 8),
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+INSERT INTO users(username, email, password, name, surrname) VALUES("test", "test@o2.pl", "test123", "test", "test");
+
+INSERT INTO wallets(user_id, BTC, ETH, LTC, USD) VALUES (
+SELECT id FROM users WHERE username = 'slawek' LIMIT 1, 0, 0, 0, 0);

@@ -15,15 +15,12 @@ class CoinmarketApi:
 
     @staticmethod
     def getBtcPrice():
-        return 51200
-        #return (float(CoinmarketApi.getPrice(CoinmarketApi.btcUrl)))
+        return (float(CoinmarketApi.getPrice(CoinmarketApi.btcUrl)))
 
     @staticmethod
     def getEthPrice():
-        return 1232
-        #return (float(CoinmarketApi.getPrice(CoinmarketApi.ethUrl)))
+        return (float(CoinmarketApi.getPrice(CoinmarketApi.ethUrl)))
 
     @staticmethod
     def getLtcPrice():
-        return 100
-        #return (float(CoinmarketApi.getPrice(CoinmarketApi.ltcUrl)))
+        return (float(CoinmarketApi.getPrice(CoinmarketApi.ltcUrl)))

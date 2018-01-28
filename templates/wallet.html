@@ -1,26 +1,26 @@
-{% extends 'layout.html' %}
-
-{% block body %}
-    <h1>Wallet</h1>
-    <div class="col-md-6">
-        <ul class="list-group text-center">
-            <li class="list-group-item list-group-item-info row">
-                <div class="col-md-3">Currency</div>
-                <div class="col-md-3">USD price</div>
-                <div class="col-md-3">24h change</div>
-                <div class="btn-group col-md-3">Buy/Sell</div>
-            </li>
-            {% for currency in wallet.currencyManager.currencies.keys() %}
-            <li class="list-group-item row">
-                <div class="col-md-3">{{ currency }}</div>
-                <div class="col-md-3">{{ wallet.currencyManager.getCurrency(currency).getPriceUsd() }}$</div>
-                <div class="col-md-3">+10%</div>
-                <div class="btn-group col-md-3">
-                    <a href="#" id="ember708" class="btn btn-success ember-view">Buy</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+{% extends 'layout.html' %} {% block body %}
+<div class="col-md-offset-1 col-md-10 text-center">
+    <h1>Your wallet</h1>
+    <ul class="list-group text-center">
+        <li class="list-group-item list-group-item-success row">
+            <div class="col-md-2">Currency</div>
+            <div class="col-md-2">Units</div>
+            <div class="col-md-2">Total USD price</div>
+            <div class="col-md-2">Total bought</div>
+            <div class="col-md-2">Total sold</div>
+            <div class="col-md-2">Change</div>
+        </li>
+        {% for currency in wallet.currencyManager.currencies.keys() %}
+        <li class="list-group-item row">
+            <div class="col-md-2">{{ currency }}</div>
+            <div class="col-md-2">{{ wallet.currencyManager.getCurrency(currency).getCount(wallet.userId) }}</div>
+            <div class="col-md-2">{{ wallet.currencyManager.getCurrency(currency).getCount(wallet.userId) * wallet.currencyManager.getCurrency(currency).getPriceUsd()}}</div>
+            <div class="col-md-2">100</div>
+            <div class="col-md-2">50</div>
+            <div class="col-md-2">+10%</div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}
