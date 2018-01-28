@@ -6,6 +6,7 @@ from functools import wraps
 import os
 
 from users import Users
+from wallet import Wallet
 from web.register import Register
 from db import Db
 password = "qwerty"
@@ -35,6 +36,7 @@ def login():
         elif Users.checkLoginAndPassword(request.form['username'], request.form['password']):
             session['logged_in'] = True
             session['user_name'] = Users.getUser(username = request.form['username'], email = request.form['username']).getName()
+            session['user_id'] = Users.getUser(username = request.form['username'], email = request.form['username']).getId()
             return index()
         else:
             flash('You typed wrong username/email or password!', 'danger')
@@ -48,13 +50,17 @@ def login():
 def logout():
     session['logged_in'] = False
     session['user_name'] = None
+    session['user_id'] = None
     flash('You are logged out!', 'info')
     return index()
 
 @login_required
 @app.route('/wallet')
 def wallet():
-    return render_template('wallet.html')
+    
+    wallet = Wallet(session['user_id'])
+    
+    return render_template('wallet.html', wallet = wallet)
 
 @app.route('/users')
 def users():

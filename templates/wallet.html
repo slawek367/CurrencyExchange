@@ -2,4 +2,25 @@
 
 {% block body %}
     <h1>Wallet</h1>
+    <div class="col-md-6">
+        <ul class="list-group text-center">
+            <li class="list-group-item list-group-item-info row">
+                <div class="col-md-3">Currency</div>
+                <div class="col-md-3">USD price</div>
+                <div class="col-md-3">24h change</div>
+                <div class="btn-group col-md-3">Buy/Sell</div>
+            </li>
+            {% for currency in wallet.currencyManager.currencies.keys() %}
+            <li class="list-group-item row">
+                <div class="col-md-3">{{ currency }}</div>
+                <div class="col-md-3">{{ wallet.currencyManager.getCurrency(currency).getPriceUsd() }}$</div>
+                <div class="col-md-3">+10%</div>
+                <div class="btn-group col-md-3">
+                    <a href="#" id="ember708" class="btn btn-success ember-view">Buy</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
 {% endblock %}

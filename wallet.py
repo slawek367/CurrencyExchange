@@ -1,10 +1,12 @@
-from currency_factory.currency_manager import CurrencyManager
 from config import Config
 from db import Db
+from currency_factory.currency_manager import CurrencyManager
 
 class Wallet():
-        def __init__():
-            pass
+        def __init__(self, userId):
+            self.userId = userId
+            self.currencyManager = CurrencyManager()
+            
 
         @staticmethod
         def registerWallet(username):

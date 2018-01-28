@@ -1,10 +1,10 @@
 from currency_factory.currency import Currency
 from currency_factory.coinmarket_api import CoinmarketApi
 
-class BtcCurrency(Currency):
+class UsdCurrency(Currency):
 
     def __init__(self):
-        super().__init__("BTC")
-
+        super().__init__("USD")
+        
     def getPriceUsd(self):
-        return CoinmarketApi.getBtcPrice()
+        return 1

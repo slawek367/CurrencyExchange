@@ -60,9 +60,7 @@ class Users():
         else:
             return False
 
-        print(*userResponse)
         user = User(*userResponse)
-        print("LOL")
         return user
 
     def printUsers(self):
