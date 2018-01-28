@@ -1,4 +1,3 @@
-#This is short description what database you should create to run that webpage
 mysql -u root -p
 
 SHOW DATABASES;
@@ -7,3 +6,14 @@ use currency_exchange;
 CREATE TABLE(id INT(11) AUTO_INCREMENT PRIMARY KEY, username VARCHAR(30), email VARCHAR(100), password VARCHAR(100), name VARCHAR(100), surrname VARCHAR(100), register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 SHOW TABLES;
 DESCRIBE users;
+
+Wallet table:
+CREATE TABLE Wallets (
+	id INT(11) AUTO_INCREMENT PRIMARY KEY,
+	user_id INT(11),
+	BTC DECIMAL(20, 8),
+	ETH DECIMAL(20, 8),
+	LTC DECIMAL(20, 8),
+	USD DECIMAL(20, 8),
+	FOREIGN KEY (user_id) REFERENCES users(id)
+);
