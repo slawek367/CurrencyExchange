@@ -31,13 +31,14 @@ class CoinmarketApi:
                         marketCap = currencyData["market_cap_usd"]
                         availableSupply = currencyData["available_supply"]
                         totalSupply = currencyData["total_supply"]
+                        maxSupply = currencyData["max_supply"]
                         change1h = currencyData["percent_change_1h"]
                         change24h = currencyData["percent_change_24h"]
                         change7d = currencyData["percent_change_7d"]
                         db.queryInsert("INSERT INTO \
-                        coinmarket_data(symbol, name, rank, priceUsd, priceBtc, marketCap, availableSupply, totalSupply, change1h, change24h, change7d) \
-                        VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", \
-                        (currencySymbol, name, rank, priceUsd, priceBtc, marketCap, availableSupply, totalSupply, change1h, change24h, change7d))
+                        coinmarket_data(symbol, name, rank, priceUsd, priceBtc, marketCap, availableSupply, totalSupply, maxSupply, change1h, change24h, change7d) \
+                        VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", \
+                        (currencySymbol, name, rank, priceUsd, priceBtc, marketCap, availableSupply, totalSupply, maxSupply, change1h, change24h, change7d))
                         break
                     else:
                         continue
