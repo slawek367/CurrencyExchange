@@ -27,7 +27,7 @@ class Currency():
         return self.name
 
     def getPriceUsd(self):
-        self.updateData()
+        #self.updateData()
         return self.priceUsd
 
     def getCount(self, user_id):

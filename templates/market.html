@@ -1,20 +1,31 @@
 {% extends 'layout.html' %} {% block body %}
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-12">
     <ul class="list-group text-center">
         <h1>Market</h1>
         <li class="list-group-item list-group-item-info row">
-            <div class="col-md-3">Currency</div>
-            <div class="col-md-3">USD price</div>
-            <div class="col-md-3">24h change</div>
-            <div class="btn-group col-md-3">Buy/Sell</div>
+                <div class="col-md-1">Name</div>
+                <div class="col-md-1">Rank</div>
+                <div class="col-md-2">USD</div>
+                <div class="col-md-1">BTC</div>
+                <div class="col-md-2">Market Cap</div>
+                <div class="col-md-1">Supply</div>
+                <div class="col-md-1">24h</div>
+                <div class="col-md-1">7d</div>
+                <div class="col-md-1">Updated</div>
+                <div class="col-md-1">Buy/sell</div>
         </li>
         {% for currency in wallet.currencyManager.currencies.keys() %}
         <li class="list-group-item row">
-            <div class="col-md-3">{{ currency }}</div>
-            <div class="col-md-3">{{ wallet.currencyManager.getCurrency(currency).getPriceUsd() }}$</div>
-            <div class="col-md-3">+10%</div>
-            <div class="btn-group col-md-3">
-                <a href="#" id="ember708" class="btn btn-success">Buy</a>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).fullName }}({{ currency }})</div>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).rank }}</div>
+                <div class="col-md-2">{{ wallet.currencyManager.getCurrency(currency).priceUsd }}</div>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).priceBtc }}</div>
+                <div class="col-md-2">{{ wallet.currencyManager.getCurrency(currency).marketCap }}</div>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).availableSupply }}</div>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).change24h }}</div>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).change7d }}</div>
+                <div class="col-md-1">{{ wallet.currencyManager.getCurrency(currency).updatedDate }}</div>
+                <div class="btn-group col-md-1"><a href="#" id="ember708" class="btn btn-success">Buy</a>
             </div>
         </li>
         {% endfor %}
