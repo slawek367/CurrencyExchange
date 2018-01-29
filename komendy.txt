@@ -22,3 +22,33 @@ INSERT INTO users(username, email, password, name, surrname) VALUES("test", "tes
 
 INSERT INTO wallets(user_id, BTC, ETH, LTC, USD) VALUES (
 SELECT id FROM users WHERE username = 'slawek' LIMIT 1, 0, 0, 0, 0);
+
+CREATE TABLE coinmarket_data (
+	id INT(11) AUTO_INCREMENT PRIMARY KEY,
+	symbol VARCHAR(6),
+	name VARCHAR(20),
+	rank INT(3),
+	priceUsd DECIMAL(20, 8),
+	priceBtc DECIMAL(20, 8),
+	marketCap BIGINT(13),
+	availableSupply BIGINT(13),
+	totalSupply BIGINT(13),
+	maxSupply BIGINT(13),
+	change1h DECIMAL(4, 2),
+	change24h DECIMAL(4, 2),
+	change7d DECIMAL(4, 2),
+	date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+https://api.coinmarketcap.com/v1/ticker/
+
+                        name = currencyData["name"]
+                        rank = currencyData["rank"]
+                        priceUsd = currencyData["price_usd"]
+                        priceBtc = currencyData["price_btc"]
+                        marketCap = currencyData["market_cap_usd"]
+                        availableSupply = currencyData["available_supply"]
+                        totalSupply = currencyData["total_supply"]
+                        change1h = currencyData["percent_change_1h"]
+                        change24h = currencyData["percent_change_24h"]
+                        change7d = currencyData["percent_change_7d"]
