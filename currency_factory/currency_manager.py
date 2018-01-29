@@ -7,7 +7,8 @@ from currency_factory.usd import UsdCurrency
 class CurrencyManager():
 
     def __init__(self):
-        self.currencies = {"ETH":EthCurrency, "BTC":BtcCurrency, "LTC":LtcCurrency, "USD":UsdCurrency}
+        self.currencies = {"ETH": EthCurrency, "BTC": BtcCurrency,
+                           "LTC": LtcCurrency, "USD": UsdCurrency}
 
     def getCurrency(self, name):
         if name in self.currencies.keys():
