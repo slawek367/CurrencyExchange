@@ -1,11 +1,43 @@
 import urllib.request
 import json
 
+#import Db from parent folder
+import os,sys,inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir) 
+from db import Db
+
 class CoinmarketApi:
-    
+    coinApiUrl = "https://api.coinmarketcap.com/v1/ticker/"
+
     btcUrl = "https://api.coinmarketcap.com/v1/ticker/bitcoin/"
     ethUrl = "https://api.coinmarketcap.com/v1/ticker/ethereum/"
     ltcUrl = "https://api.coinmarketcap.com/v1/ticker/litecoin/"
+
+    @staticmethod
+    def updateDatabase(currencies):
+        db = Db()
+        with urllib.request.urlopen(CoinmarketApi.coinApiUrl) as url:
+            data = json.loads(url.read().decode())
+
+            for currencySymbol in currencies:
+                for currencyData in data:
+                    print(currencyData["symbol"])
+                    if currencySymbol == currencyData["symbol"]:
+                        name = currencyData["name"]
+                        rank = currencyData["rank"]
+                        priceUsd = currencyData["price_usd"]
+                        priceBtc = currencyData["price_btc"]
+                        marketCap = currencyData["market_cap_usd"]
+                        availableSupply = currencyData["available_supply"]
+                        totalSupply = currencyData["total_supply"]
+                        change1h = currencyData["percent_change_1h"]
+                        change24h = currencyData["percent_change_24h"]
+                        change7d = currencyData["percent_change_7d"]
+                        break
+                    else:
+                        continue
 
     @staticmethod
     def getPrice(currencyUrlApi):
