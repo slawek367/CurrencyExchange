@@ -5,6 +5,3 @@ class BtcCurrency(Currency):
 
     def __init__(self):
         super().__init__("BTC")
-
-    def getPriceUsd(self):
-        return CoinmarketApi.getBtcPrice()

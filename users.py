@@ -51,7 +51,6 @@ class Users():
     def getUser(id = None, username = None, email = None):
         userList = {}
         db = Db()
-        print("Starting query...")
         
         if not id is None:
             userResponse = db.querySelectOne('SELECT * FROM users WHERE id="%s"LIMIT 1' %(id))

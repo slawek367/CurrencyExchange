@@ -5,6 +5,3 @@ class EthCurrency(Currency):
 
     def __init__(self):
         super().__init__("ETH")
-        
-    def getPriceUsd(self):
-        return CoinmarketApi.getEthPrice()

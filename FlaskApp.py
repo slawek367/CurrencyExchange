@@ -7,12 +7,15 @@ import os
 
 from users import Users
 from wallet import Wallet
+from update import Update
 from web.register import Register
 from db import Db
 password = "qwerty"
 username = "admin"
 
 app = Flask(__name__)
+update = Update()
+update.updatePrices()
 
 def login_required(f):
     @wraps(f)
@@ -57,15 +60,21 @@ def logout():
 @login_required
 @app.route('/wallet')
 def wallet():
-    
-    wallet = Wallet(session['user_id'])
+    if 'user_id' in session.keys():
+        wallet = Wallet(session['user_id'])
+    else:
+        return index()
+
     return render_template('wallet.html', wallet = wallet)
 
 @login_required
 @app.route('/market')
 def market():
-    
-    wallet = Wallet(session['user_id'])
+    if 'user_id' in session.keys():
+        wallet = Wallet(session['user_id'])
+    else:
+        return index()
+
     return render_template('market.html', wallet = wallet)
 
 @app.route('/users')
@@ -98,3 +107,4 @@ def register():
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
     app.run(debug=True,host='0.0.0.0', port=4000)
+    #app.run(debug=False,host='0.0.0.0', port=4000)

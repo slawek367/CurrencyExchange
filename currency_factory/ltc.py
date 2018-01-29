@@ -5,6 +5,3 @@ class LtcCurrency(Currency):
 
     def __init__(self):
         super().__init__("LTC")
-        
-    def getPriceUsd(self):
-        return CoinmarketApi.getLtcPrice()
