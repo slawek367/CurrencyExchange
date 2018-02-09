@@ -1,3 +1,5 @@
+### This is a mysql configuration
+
 mysql -u root -p
 
 SHOW DATABASES;
